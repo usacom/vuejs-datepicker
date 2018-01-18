@@ -4,9 +4,10 @@
       <!-- Calendar Button -->
       <div v-if="calendarButton" class="vdp-datepicker__calendar-button" :class="{'input-group-prepend' : bootstrapStyling}" @click="showCalendar" v-bind:style="{'cursor:not-allowed;' : disabledPicker}">
         <span class="input-group-text">
+          <slot name="calendarButtonSlot"></slot>
           <i :class="calendarButtonIcon">
             {{ calendarButtonIconContent }}
-            <span v-if="!calendarButtonIcon">&hellip;</span>
+            <span v-if="!calendarButtonIcon && !$slots.calendarButtonSlot">&hellip;</span>
           </i>
         </span>
       </div>
@@ -28,8 +29,9 @@
       <!-- Clear Button -->
       <div v-if="clearButton && selectedDate" class="vdp-datepicker__clear-button" :class="{'input-group-append' : bootstrapStyling}" @click="clearDate()">
         <span class="input-group-text">
+          <slot name="clearButtonSlot"></slot>
           <i :class="clearButtonIcon">
-            <span v-if="!clearButtonIcon">&times;</span>
+            <span v-if="!clearButtonIcon && !$slots.clearButtonSlot">&times;</span>
           </i>
         </span>
       </div>
